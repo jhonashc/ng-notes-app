@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { NotesRoutingModule } from './notes-routing.module';
 
@@ -17,6 +18,6 @@ import { DetailPageComponent } from './pages/detail-page/detail-page.component';
     ListPageComponent,
     SearchPageComponent,
   ],
-  imports: [CommonModule, NotesRoutingModule],
+  imports: [CommonModule, NotesRoutingModule, ReactiveFormsModule],
 })
 export class NotesModule {}

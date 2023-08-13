@@ -1,1 +1,37 @@
-<p>form-page works!</p>
+<form [formGroup]="notesForm" (submit)="onSubmit()" class="form">
+  <div class="form__group">
+    <label for="title" class="form__label">Title</label>
+    <input
+      type="text"
+      id="title"
+      formControlName="title"
+      placeholder="Enter a title"
+      class="form__control"
+    />
+  </div>
+  <div class="form__group">
+    <label for="description" class="form__label">Description</label>
+    <input
+      type="text"
+      id="description"
+      formControlName="description"
+      placeholder="Enter a description"
+      class="form__control"
+    />
+  </div>
+  <div class="form__group">
+    <label for="status" class="form__label">Status</label>
+    <select id="status" formControlName="status" class="form__control">
+      <option *ngFor="let status of statuses" [value]="status">
+        {{ status | titlecase }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form__actions">
+    <button type="reset" class="form__action form__action--reset">Reset</button>
+    <button type="submit" class="form__action form__action--submit">
+      Submit
+    </button>
+  </div>
+</form>
