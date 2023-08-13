@@ -1,0 +1,22 @@
+<li class="card">
+  <div class="card__header">
+    <h4 class="card__title">{{ note.title }}</h4>
+  </div>
+  <div class="card__body">
+    <p class="card__description">{{ note.description }}</p>
+    <span class="card__second"
+      ><strong>Status: </strong>{{ note.status | titlecase }}</span
+    >
+  </div>
+  <div class="card__footer">
+    <a class="card__button" [routerLink]="['/notes/edit', note.id]">
+      Edit <i class="bx bxs-pencil"></i>
+    </a>
+    <button
+      class="card__button card__button--delete"
+      (click)="onDeleteNote(note.id)"
+    >
+      Delete <i class="bx bxs-trash-alt"></i>
+    </button>
+  </div>
+</li>

@@ -1,4 +1,9 @@
-<form [formGroup]="notesForm" (submit)="onSubmit()" class="form">
+<form
+  [formGroup]="notesForm"
+  (submit)="onSubmit()"
+  class="form"
+  autocomplete="off"
+>
   <div class="form__group">
     <label for="title" class="form__label">Title</label>
     <input
@@ -31,7 +36,7 @@
   <div class="form__actions">
     <button type="reset" class="form__action form__action--reset">Reset</button>
     <button type="submit" class="form__action form__action--submit">
-      Submit
+      {{ currentNote.id ? "Update" : "Create" }}
     </button>
   </div>
 </form>

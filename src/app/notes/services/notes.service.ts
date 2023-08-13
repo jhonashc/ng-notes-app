@@ -15,12 +15,28 @@ const initialState: NotesState = {
 export class NotesService extends StoreService<NotesState> {
   constructor() {
     super(initialState);
+    this.loadFromLocalStorage();
+  }
+
+  private saveToLocalStorage(): void {
+    localStorage.setItem('cacheStore', JSON.stringify(this.state));
+  }
+
+  private loadFromLocalStorage(): void {
+    const cacheStorage: string | null = localStorage.getItem('cacheStore');
+
+    if (!cacheStorage) return;
+
+    this.setState((state) => JSON.parse(cacheStorage));
   }
 
   addNote(newNote: Note): void {
     this.setState((state) => ({
       notes: [...state.notes, newNote],
+      noteCounter: state.noteCounter + 1,
     }));
+
+    this.saveToLocalStorage();
   }
 
   updateNote(newNote: Note): void {
@@ -36,11 +52,20 @@ export class NotesService extends StoreService<NotesState> {
           : note
       ),
     }));
+
+    this.saveToLocalStorage();
   }
 
   deleteNote(noteId: string): void {
     this.setState((state) => ({
       notes: state.notes.filter((note) => note.id !== noteId),
+      noteCounter: state.noteCounter - 1,
     }));
+
+    this.saveToLocalStorage();
+  }
+
+  getNoteById(noteId: string): Note | undefined {
+    return this.state.notes.find((note) => note.id === noteId);
   }
 }

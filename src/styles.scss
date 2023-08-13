@@ -11,3 +11,31 @@
 html {
   font-family: "Roboto", sans-serif;
 }
+
+a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 90rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 40rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 64rem) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 96rem) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
